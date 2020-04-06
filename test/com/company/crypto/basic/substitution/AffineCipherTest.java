@@ -2,14 +2,9 @@ package com.company.crypto.basic.substitution;
 
 import com.company.crypto.basic.TestConst;
 import com.company.crypto.basic.alphabet.Alphabet;
-import com.company.crypto.basic.alphabet.AlphabetConst;
 import com.company.crypto.basic.alphabet.AlphabetImpl;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.awt.event.ActionListener;
-import java.util.function.BinaryOperator;
 
 import static org.junit.Assert.*;
 
@@ -30,7 +25,7 @@ public class AffineCipherTest {
     @Test
     public void testEncrypt() {
         AffineCipher cipher = new AffineCipher(alphabet,7,5);
-        Assert.assertEquals("елтщажнфывипцэдксшяёмуъбзохьгйрчю", cipher.encrypt(TestConst.RUS_SMALL_SYMBOLS));
+        assertEquals("елтщажнфывипцэдксшяёмуъбзохьгйрчю", cipher.encrypt(TestConst.RUS_SMALL_SYMBOLS));
     }
 
     /**
@@ -39,7 +34,7 @@ public class AffineCipherTest {
     @Test
     public void testDecrypt() {
         AffineCipher cipher = new AffineCipher(alphabet,7,5);
-        Assert.assertEquals(TestConst.RUS_SMALL_SYMBOLS, cipher.decrypt("елтщажнфывипцэдксшяёмуъбзохьгйрчю"));
+        assertEquals(TestConst.RUS_SMALL_SYMBOLS, cipher.decrypt("елтщажнфывипцэдксшяёмуъбзохьгйрчю"));
     }
 
     /**
@@ -49,9 +44,9 @@ public class AffineCipherTest {
     public void testIllegalKey() {
         try {
             AffineCipher cipher = new AffineCipher(alphabet,9,5);
-            Assert.fail("Ожидается исключение IllegalArgumentException");
+            fail("Ожидается исключение IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            Assert.assertNotEquals("", e.getMessage());
+            assertNotEquals("", e.getMessage());
         }
     }
 }
