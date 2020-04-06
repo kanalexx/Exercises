@@ -10,6 +10,6 @@ package com.company.crypto.basic.ariphmetic;
 public class Coprime {
 
     public boolean apply(int firsInt, int secondInt) {
-        return Math.abs((new Gcd()).apply(firsInt, secondInt)) == 1;
+        return Math.abs((new Gcd(firsInt, secondInt)).value()) == 1;
     }
 }

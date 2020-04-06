@@ -10,6 +10,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         GcdTest.class,
+        GcdExTest.class,
         CoprimeTest.class,
 })
 public class ArithmeticTestSuit {

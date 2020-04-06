@@ -1,21 +1,26 @@
 package com.company.crypto.basic.ariphmetic;
 
 /**
- * Наибольший общий делитель (НОД) (Greatest Common Divisor)
- *
- * <br> Используется алгоритм Эйлера
+ * Наибольший общий делитель (НОД)(Greatest Common Divisor) целых чисел
+ * <br> Используется обычный алгоритм Эйлера
  *
  * @author Alexander Kanunnikov
  */
 
 public class Gcd {
 
-    public int apply(int int1, int int2) {
-        int rest = int2 % int1;
-        if (rest == 0) {
-            return int1;
+    private int value;
+
+    public Gcd(int a, int b) {
+        if (b == 0) {
+            value = a;
         } else {
-            return apply(rest, int1);
+            value = (new Gcd(b, a % b)).value();
         }
     }
+
+    public int value() {
+        return value;
+    }
+
 }

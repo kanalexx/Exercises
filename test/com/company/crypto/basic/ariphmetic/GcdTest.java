@@ -11,8 +11,9 @@ public class GcdTest {
 
     @Test
     public void apply() {
-        Gcd gcd = new Gcd();
-        assertEquals(17, gcd.apply(119, 544));
-        assertEquals(1, gcd.apply(7, 33));
+        assertEquals(17, (new Gcd(119, 544)).value());
+        assertEquals(1, (new Gcd(7, 33)).value());
+        assertEquals(33, (new Gcd(33, 0)).value());
+        assertEquals(33, (new Gcd(0, 33)).value());
     }
 }
