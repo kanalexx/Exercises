@@ -7,7 +7,7 @@ package com.company.crypto.basic.ariphmetic;
  * @author Alexander Kanunnikov
  */
 
-public class Gcd {
+public final class Gcd {
 
     private int value;
 
@@ -20,7 +20,13 @@ public class Gcd {
     }
 
     public int value() {
-        return value;
+        return Math.abs(value);
     }
 
+    /**
+     * "a" и "b" взаимно простые числа если их НОД равен 1.
+     */
+    public boolean coprime() {
+        return value() == 1;
+    }
 }

@@ -1,5 +1,6 @@
 package com.company.crypto.basic.ariphmetic;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,6 +16,7 @@ public class GcdExTest {
         assertEquals(1, gcd.value());
         assertEquals(-14, gcd.x());
         assertEquals(3, gcd.y());
+        assertEquals(19, gcd.inverse_a());
     }
 
     @Test
@@ -23,6 +25,12 @@ public class GcdExTest {
         assertEquals(3, gcd.value());
         assertEquals(-11, gcd.x());
         assertEquals(14, gcd.y());
+        try {
+            gcd.inverse_a();
+            Assert.fail("Ожидается исключение IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            Assert.assertNotEquals("", e.getMessage());
+        }
     }
 
 }

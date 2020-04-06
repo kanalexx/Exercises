@@ -1,7 +1,6 @@
 package com.company.crypto.basic.substitution;
 
 import com.company.crypto.basic.alphabet.Alphabet;
-import com.company.crypto.basic.ariphmetic.Coprime;
 import com.company.crypto.basic.ariphmetic.GcdEx;
 
 /**
@@ -27,21 +26,12 @@ public class AffineCipher extends SimpleSubstitutionCipher {
         super(alphabet);
         this.key_a = a;
         this.key_b = b;
-        checkKeyA();
-        // обратное число ищется с помощью расширенного алгоритма Эйлера
-        int x = (new GcdEx(key_a, alphabet.size())).x();
-        // x = (x mod m + m) mod m
-        inverse_a = (x % alphabet.size() + alphabet.size()) % alphabet.size();
-    }
-
-    /**
-     * Ключ "а" должен быть взаимно простым с рзмером алфавита
-     */
-    private void checkKeyA() {
-        boolean isCoprime = (new Coprime()).apply(key_a, alphabet.size());
-        if (!isCoprime) {
+        //
+        GcdEx gcd = new GcdEx(a, alphabet.size());
+        if (!gcd.coprime()) {
             throw new IllegalArgumentException("Неверно подобран ключ шифра: ключ \"a\" и размер алфавита должны быть взаимно простыми");
         }
+        inverse_a = gcd.inverse_a();
     }
 
     @Override
