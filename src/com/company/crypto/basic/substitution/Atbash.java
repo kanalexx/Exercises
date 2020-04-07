@@ -8,7 +8,13 @@ import com.company.crypto.basic.alphabet.Alphabet;
  * <br> можно рассматривать как частный случай аффинного шифра, когда a=b=m-1.
  */
 public class Atbash extends AffineCipher {
+
     public Atbash(Alphabet alphabet) {
         super(alphabet, alphabet.size() - 1, alphabet.size() - 1);
+    }
+
+    @Override
+    public String name() {
+        return "Атбаш";
     }
 }

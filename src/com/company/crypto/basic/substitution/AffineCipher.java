@@ -35,6 +35,11 @@ public class AffineCipher extends SimpleSubstitutionCipher {
     }
 
     @Override
+    public String name() {
+        return "Аффинный шифр";
+    }
+
+    @Override
     protected String cipherSymbol(String plainSymbol) {
         int plainIndex = alphabet.index(plainSymbol);
         int cipherIndex = (key_a * plainIndex + key_b) % alphabet.size();

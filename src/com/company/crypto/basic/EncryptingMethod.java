@@ -8,6 +8,11 @@ package com.company.crypto.basic;
 public interface EncryptingMethod {
 
     /**
+     * Наименование алгоритма шифрования
+     */
+    String name();
+
+    /**
      * Зашифровать исходные данные
      */
     String encrypt(String data);

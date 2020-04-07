@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AffineCipherTest.class
+        AffineCipherTest.class,
+        AtbashTest.class
 })
 public class SubstitutionTestSuit {
 

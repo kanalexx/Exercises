@@ -14,4 +14,5 @@ public class AlphabetConst {
 
     public static final Alphabet GENERAL = new AlphabetImpl(space + eng + rus + digits + spec);
     public static final Alphabet RUS = new AlphabetImpl(space + rus);
+    public static final Alphabet RUS_EXTEND = new AlphabetImpl(space + rus + digits + spec);
 }
