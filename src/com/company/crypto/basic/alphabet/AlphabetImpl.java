@@ -30,6 +30,9 @@ public class AlphabetImpl implements Alphabet {
             // зацикленность алфавита
             int idx = index % this.size();
             return String.valueOf(symbols.charAt(idx));
+        } else if (index < 0) {
+            int idx = index % this.size() + this.size();
+            return String.valueOf(symbols.charAt(idx));
         } else {
             throw new IllegalArgumentException(String.format("Недопустимый индекс (%s).", index));
         }

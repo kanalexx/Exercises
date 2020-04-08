@@ -44,12 +44,21 @@ public class AlphabetImplTest {
     }
 
     /**
-     * Тест индекса, который выходит за рамки алфавита.
+     * Тест индекса, который больше размера алфавита.
      * Алфавит зациклен.
      */
     @Test
     public void testIndexOverSize() {
         assertEquals("b", alphabet.symbol(13));
+    }
+
+    /**
+     * Тест отрицательного индекса.
+     * Зацикленность алфавита обеспечивает сдвиг алфавита влево.
+     */
+    @Test
+    public void testNegativeIndex() {
+        assertEquals("b", alphabet.symbol(-3));
     }
 
     /**

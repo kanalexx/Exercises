@@ -3,6 +3,7 @@ package com.company.crypto.basic;
 import com.company.crypto.basic.alphabet.*;
 import com.company.crypto.basic.substitution.AffineCipher;
 import com.company.crypto.basic.substitution.Atbash;
+import com.company.crypto.basic.substitution.CaesarCipher;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -42,6 +43,10 @@ public class CryptoTest {
         System.out.println();
         EncryptedData atbashEncrypted = new EncryptedData(PLAIN_TEXT, new Atbash(alphabet));
         System.out.println(atbashEncrypted.view());
+        // Шифр Цезаря
+        System.out.println();
+        EncryptedData caesarEncrypted = new EncryptedData(PLAIN_TEXT, new CaesarCipher(alphabet, 7));
+        System.out.println(caesarEncrypted.view());
     }
 
 }
