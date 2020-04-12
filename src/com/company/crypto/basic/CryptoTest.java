@@ -16,7 +16,36 @@ public class CryptoTest {
 
     private static void printBuf(byte[] buf) {
         for (byte b : buf) {
-            System.out.print(String.valueOf(b) +",");
+            System.out.printf("%X ", b);
+        }
+        System.out.println();
+    }
+
+    private static void printHex(byte[] buf) {
+        int lenStr = 0;
+        for (byte b : buf) {
+            System.out.printf("%X ", b);
+            if (++lenStr > 15) {
+                lenStr = 0;
+                System.out.println();
+            }
+        }
+        System.out.println();
+    }
+
+    private static void printInt(byte[] buf) {
+        int lenStr = 0;
+        int idx = 0;
+        while (idx < buf.length) {
+            int i = (idx < buf.length ? (buf[idx++] << 24) & 0xFF000000 : 0) |
+                    (idx < buf.length ? (buf[idx++] << 16) & 0x00FF0000 : 0) |
+                    (idx < buf.length ? (buf[idx++] << 8) & 0x0000FF00 : 0)  |
+                    (idx < buf.length ? (buf[idx++] << 0) & 0x000000FF : 0);
+            System.out.printf("%X ", i);
+            if (++lenStr > 3) {
+                lenStr = 0;
+                System.out.println();
+            }
         }
         System.out.println();
     }
@@ -47,6 +76,15 @@ public class CryptoTest {
         System.out.println();
         EncryptedData caesarEncrypted = new EncryptedData(PLAIN_TEXT, new CaesarCipher(alphabet, 7));
         System.out.println(caesarEncrypted.view());
+        // Вывод в HEX
+        System.out.println();
+        System.out.println("Вывод в HEX:");
+        String testStr = "Это тестовый буфер для проверки порядка следования байтов";
+        System.out.println(testStr);
+        byte[] buf = testStr.getBytes("Cp1251");
+        printHex(buf);
+        System.out.println("PrintInt:");
+        printInt(buf);
     }
 
 }
