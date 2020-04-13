@@ -1,10 +1,11 @@
 package com.company.crypto.basic.cryptanalysis;
 
+import com.company.common.Logger;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -14,12 +15,18 @@ import java.util.regex.Pattern;
 public class SymbolFreqFile {
 
     public static void main(String[] args) {
+        final String textFileName = "C:\\text.txt";
+        final String freqFileName = "C:\\freq.txt";
+        final String symbolMask = "[ А-Я]";
+        //
         HashMap<String, Integer> countMap = new HashMap<>(100);
         int allCount = 0;
-        try (InputStream is = new FileInputStream("C:\\text.txt")) {
+        Logger logger = new Logger();
+        logger.logf("Чтение файла с текстом %s", textFileName);
+        try (InputStream is = new FileInputStream(textFileName)) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "Cp1251"));
             int cp;
-            Pattern pattern = Pattern.compile("[ А-Я]");
+            Pattern pattern = Pattern.compile(symbolMask);
             while ((cp = reader.read()) != -1) {
                 String symbol = String.valueOf((char)cp);
                 if (pattern.matcher(symbol).matches()) {
@@ -38,14 +45,17 @@ public class SymbolFreqFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.logf("Найдено %s символов, удовлетворяющих маске", allCount, symbolMask);
         //
+        logger.log("Подсчет частот");
         TreeMap<Float, String> freqMap = new TreeMap<>();
         if (allCount > 0) {
             for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
                 freqMap.put(entry.getValue().floatValue() / (float) allCount, entry.getKey());
             }
         }
-        try (OutputStream os = new FileOutputStream("C:\\freq.txt")) {
+        logger.logf("Сохранение частот в файл %s", freqFileName);
+        try (OutputStream os = new FileOutputStream(freqFileName)) {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "Cp1251"));
             for (Map.Entry<Float, String> entry : freqMap.descendingMap().entrySet()) {
                 writer.write(String.format("%s=%f\n", entry.getValue(), entry.getKey()));
@@ -56,6 +66,7 @@ public class SymbolFreqFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        logger.log("ГОТОВО!");
     }
 
 }
