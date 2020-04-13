@@ -1,5 +1,7 @@
 package com.kanaa.crypto.basic;
 
+import java.io.*;
+
 /**
  * Зашифрованный текст
  *
@@ -35,5 +37,13 @@ public class EncryptedData {
                 encryptingMethod.name(),
                 plainText,
                 cipherText);
+    }
+
+    public void saveToFile(String fileName) throws IOException {
+        try (OutputStream os = new FileOutputStream(fileName);
+             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os))
+        ) {
+            writer.write(value());
+        }
     }
 }
