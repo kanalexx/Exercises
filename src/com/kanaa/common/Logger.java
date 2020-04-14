@@ -28,4 +28,12 @@ public class Logger {
         System.out.printf("[%s] %s\n", dateFormat.format(new Date()), message);
     }
 
+    public void printf(String message, Object ...args) {
+        print(String.format(message, args));
+    }
+
+    public void print(String message) {
+        System.out.printf("%s\n", message);
+    }
+
 }
