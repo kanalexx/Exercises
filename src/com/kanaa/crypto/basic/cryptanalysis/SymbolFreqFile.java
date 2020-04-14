@@ -2,6 +2,7 @@ package com.kanaa.crypto.basic.cryptanalysis;
 
 import com.kanaa.common.Logger;
 import com.kanaa.common.Pair;
+import com.kanaa.common.StringFromFile;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -31,6 +32,11 @@ public class SymbolFreqFile {
         HashMap<String, Integer> countMap = new HashMap<>(100);
         int allCount = 0;
         LOGGER.logf("Чтение файла с текстом %s", textFileName);
+        File textFile = new File(textFileName);
+        if (!textFile.exists()) {
+            LOGGER.logf("Не найден файл %s", textFileName);
+            return this;
+        }
         try (InputStream is = new FileInputStream(textFileName);
              BufferedReader reader = new BufferedReader(new InputStreamReader(is, charsetName))
         ) {
@@ -83,10 +89,9 @@ public class SymbolFreqFile {
             e.printStackTrace();
         }
         // получение строки из файла с зашифрованным текстом
-        try (Stream<String> stream = Files.lines(Paths.get(resources+"cipher.txt"), Charset.forName("Cp866"))) {
-            StringBuilder sb = new StringBuilder();
-            stream.forEach(sb::append);
-            System.out.println(sb.toString());
+        try {
+            String cipherText = (new StringFromFile(resources+"cipher.txt", "Cp866")).value();
+            LOGGER.print(cipherText);
         } catch (IOException e) {
             e.printStackTrace();
         }
