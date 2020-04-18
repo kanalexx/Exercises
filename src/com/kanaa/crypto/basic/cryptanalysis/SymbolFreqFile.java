@@ -5,12 +5,8 @@ import com.kanaa.common.Pair;
 import com.kanaa.common.StringFromFile;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 /**
  * @author Alexander Kanunnikov
