@@ -38,4 +38,37 @@ public class ArrayTest {
         array = new Array<>(5, 1, 4, 2, 3);
         assertEquals(1, array.indexOfMin());
     }
+
+    @Test
+    public void equalsTest() {
+        Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
+        Array<Integer> array2 = new Array<>(5, 1, 4, 2, 3);
+        Array<Integer> array3 = new Array<>(3, 2, 4, 1, 5);
+        assertEquals(array1, array2);
+        assertNotEquals(array1, array3);
+    }
+
+    @Test
+    public void cloneTest() {
+        Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
+        Array<Integer> array2 = array1.clone();
+        assertEquals(array1, array2);
+        assertNotSame(array1, array2);
+    }
+
+    @Test
+    public void insertionSort() {
+        Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
+        Array<Integer> array2 = new Array<>(1, 2, 3, 4, 5);
+        array1.insertionSort();
+        assertEquals(array1, array2);
+    }
+
+    @Test
+    public void insertionSortDesc() {
+        Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
+        Array<Integer> array2 = new Array<>(5, 4, 3, 2, 1);
+        array1.insertionSortDesc();
+        assertEquals(array1, array2);
+    }
 }
