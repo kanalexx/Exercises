@@ -1,10 +1,13 @@
 package com.kanaa.mathan.matrix;
 
+import com.kanaa.mathan.matrix.sorting.Sorter;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiFunction;
 
 /**
+ *
+ *
  * @author Alexander Kanunnikov
  */
 
@@ -47,33 +50,17 @@ public class Array<T extends Comparable<T>> {
     }
 
     /**
-     * Сортировка вставкой (по возрастанию)
+     * Сортирует элементы указанным алгоритмом сортировки
      */
-    public void insertionSort() {
-        insertionSort((T val1, T val2) -> val1.compareTo(val2) > 0);
+    public void sort(Sorter sorter) {
+        sorter.sort(value);
     }
 
     /**
-     * Сортировка вставкой (по убыванию)
+     * Сортирует элементы указанным алгоритмом сортировки (по убыванию)
      */
-    public void insertionSortDesc() {
-        insertionSort((T val1, T val2) -> val1.compareTo(val2) < 0);
-    }
-
-    /**
-     * Сортировка вставкой
-     */
-    private void insertionSort(BiFunction<T, T, Boolean> compare) {
-        int size = value.size();
-        for (int j = 1; j < size; j++) {
-            T key = value.get(j);
-            int i = j - 1;
-            while (i >= 0 && compare.apply(value.get(i), key)) {
-                value.set(i + 1, value.get(i));
-                i--;
-            }
-            value.set(i + 1, key);
-        }
+    public void sortDesc(Sorter sorter) {
+        sorter.sortDesc(value);
     }
 
     @Override

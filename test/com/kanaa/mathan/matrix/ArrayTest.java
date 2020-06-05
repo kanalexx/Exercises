@@ -55,20 +55,4 @@ public class ArrayTest {
         assertEquals(array1, array2);
         assertNotSame(array1, array2);
     }
-
-    @Test
-    public void insertionSort() {
-        Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
-        Array<Integer> array2 = new Array<>(1, 2, 3, 4, 5);
-        array1.insertionSort();
-        assertEquals(array1, array2);
-    }
-
-    @Test
-    public void insertionSortDesc() {
-        Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
-        Array<Integer> array2 = new Array<>(5, 4, 3, 2, 1);
-        array1.insertionSortDesc();
-        assertEquals(array1, array2);
-    }
 }
