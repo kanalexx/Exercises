@@ -9,16 +9,23 @@ import java.util.List;
  * @author Alexander Kanunnikov
  */
 public enum Sorting implements Sorter {
-    INSERTION(new InsertionSort());
+    INSERTION("Сортировка вставкой", new InsertionSort()),
+    SELECTION("Сортировка выбором", new SelectionSort());
 
+    private String sortName;
     private Sorter sorter;
 
-    Sorting(Sorter sorter) {
+    Sorting(String sortName, Sorter sorter) {
+        this.sortName = sortName;
         this.sorter = sorter;
     }
 
     @Override
     public <T extends Comparable<T>> void sort(List<T> list, Comparator<T> comparator) {
         this.sorter.sort(list, comparator);
+    }
+
+    public String sortName() {
+        return sortName;
     }
 }
