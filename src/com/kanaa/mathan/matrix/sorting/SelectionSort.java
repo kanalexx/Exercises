@@ -16,7 +16,7 @@ import java.util.List;
 public class SelectionSort implements Sorter {
 
     @Override
-    public <T extends Comparable<T>> void sort(List<T> list, Comparator<T> comparator) {
+    public <T> void sort(List<T> list, Comparator<T> comparator) {
         if (list.isEmpty())
             return;
         for (int i = 0; i < list.size() - 1; i++) {

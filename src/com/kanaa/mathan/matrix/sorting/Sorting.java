@@ -10,7 +10,8 @@ import java.util.List;
  */
 public enum Sorting implements Sorter {
     INSERTION("Сортировка вставкой", new InsertionSort()),
-    SELECTION("Сортировка выбором", new SelectionSort());
+    SELECTION("Сортировка выбором", new SelectionSort()),
+    MERGE("Сортировка слиянием", new MergeSort());
 
     private String sortName;
     private Sorter sorter;
@@ -21,7 +22,7 @@ public enum Sorting implements Sorter {
     }
 
     @Override
-    public <T extends Comparable<T>> void sort(List<T> list, Comparator<T> comparator) {
+    public <T> void sort(List<T> list, Comparator<T> comparator) {
         this.sorter.sort(list, comparator);
     }
 

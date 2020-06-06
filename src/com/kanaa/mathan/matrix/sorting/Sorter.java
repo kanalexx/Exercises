@@ -13,7 +13,7 @@ public interface Sorter {
     /**
      * Сортирует указанный список
      */
-    default <T extends Comparable<T>> void sort(List<T> list) {
+    default <T extends Comparable<? super T>> void sort(List<T> list) {
         sort(list, Comparator.naturalOrder());
     }
 
@@ -21,12 +21,12 @@ public interface Sorter {
     /**
      * Сортирует указанный список
      */
-    <T extends Comparable<T>> void sort(List<T> list, Comparator<T> comparator);
+    <T> void sort(List<T> list, Comparator<T> comparator);
 
     /**
      * Сортирует указанный список в обратном порядке
      */
-    default <T extends Comparable<T>> void sortDesc(List<T> list) {
+    default <T extends Comparable<? super T>> void sortDesc(List<T> list) {
         sort(list, Comparator.reverseOrder());
     }
 }
