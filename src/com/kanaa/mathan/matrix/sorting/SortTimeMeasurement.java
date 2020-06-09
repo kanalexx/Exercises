@@ -19,20 +19,33 @@ import java.util.stream.Stream;
 
 public class SortTimeMeasurement {
     private static final String resources = System.getProperty("user.dir")+"\\resources\\";
-    /** Список файлов */
-    private static final List<String> FILE_NAME_LIST = Arrays.asList(
+    /** Список быстрых сортировок */
+    private static final List<Sorting> FAST_SORTING_LIST = Arrays.asList(
+            Sorting.MERGE
+            ,Sorting.SYSTEM
+    );
+    /** Список медленных сортировок */
+    private static final List<Sorting> SLOW_SORTING_LIST = Arrays.asList(
+            Sorting.INSERTION
+            ,Sorting.SELECTION
+    );
+    /** Список файлов для быстрых сортировок */
+    private static final List<String> FILE_NAME_LIST_FOR_FAST = Arrays.asList(
             resources + "10.txt"
             , resources + "100.txt"
             , resources + "1000.txt"
             , resources + "10000.txt"
-            //            , resources + "100000.txt"
-            //            , resources + "1000000.txt"
+            , resources + "100000.txt"
+            , resources + "1000000.txt"
+            , resources + "10000000.txt"
     );
-    /** Список сортировок */
-    private static final List<Sorting> SORTING_LIST = Arrays.asList(
-            Sorting.INSERTION
-            ,Sorting.SELECTION
-            ,Sorting.MERGE
+    /** Список файлов для медленных сортировок */
+    private static final List<String> FILE_NAME_LIST_FOR_SLOW = Arrays.asList(
+            resources + "10.txt"
+            , resources + "100.txt"
+            , resources + "1000.txt"
+            , resources + "10000.txt"
+            , resources + "100000.txt"
     );
     //
     private static final Logger logger = new Logger();
@@ -93,12 +106,20 @@ public class SortTimeMeasurement {
         }
     }
 
-    public static void main(String[] args) {
+    private static void sortMeasurement(List<String> fileNameList, List<Sorting> sortingList) {
         try {
-            SortTimeMeasurement measurement = new SortTimeMeasurement(System.out, FILE_NAME_LIST, SORTING_LIST);
+            SortTimeMeasurement measurement = new SortTimeMeasurement(System.out, fileNameList, sortingList);
             measurement.run();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static void main(String[] args) {
+        // быстрые сортировки
+        sortMeasurement(FILE_NAME_LIST_FOR_FAST, FAST_SORTING_LIST);
+        // медленные сортировки
+        sortMeasurement(FILE_NAME_LIST_FOR_SLOW, SLOW_SORTING_LIST);
     }
 }
