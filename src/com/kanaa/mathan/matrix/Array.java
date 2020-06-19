@@ -4,6 +4,7 @@ import com.kanaa.mathan.matrix.sorting.Sorter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -47,6 +48,26 @@ public class Array<T extends Comparable<T>> {
             }
         }
         return min;
+    }
+
+    /**
+     * Линейный поиск элемента, удовлетваряющий условию expression
+     * @return индекс элемента, и -1 если элемент не найден
+     */
+    public int indexOf(Predicate<T> expression) {
+        for (int ind = 0; ind < value.size(); ind++) {
+            if (expression.test(value.get(ind))) {
+                return ind;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Перестановка двух элементов массива
+     */
+    public void swap(int i, int j) {
+        value.set(i, value.set(j, value.get(i)));
     }
 
     /**

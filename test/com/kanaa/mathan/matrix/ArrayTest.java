@@ -40,6 +40,13 @@ public class ArrayTest {
     }
 
     @Test
+    public void indexOfExpression() {
+        Array<Integer> array = new Array<>(1, 3, 4, 2, 3);
+        // индек элемента, который больше 2 равен 1
+        assertEquals(1, array.indexOf(value -> value.compareTo(2) > 0));
+    }
+
+    @Test
     public void equalsTest() {
         Array<Integer> array1 = new Array<>(5, 1, 4, 2, 3);
         Array<Integer> array2 = new Array<>(5, 1, 4, 2, 3);
@@ -54,5 +61,14 @@ public class ArrayTest {
         Array<Integer> array2 = array1.clone();
         assertEquals(array1, array2);
         assertNotSame(array1, array2);
+    }
+
+    @Test
+    public void swap() {
+        Integer[] array = {5, 1, 4, 2, 3};
+        Array<Integer> arrayObj = new Array<>(array);
+        arrayObj.swap(1, 3);
+        // массив изменился
+        assertArrayEquals(new Integer[]{5, 2, 4, 1, 3}, array);
     }
 }

@@ -16,13 +16,13 @@ import java.util.List;
 public class SelectionSort implements Sorter {
 
     @Override
-    public <T> void sort(List<T> list, Comparator<T> comparator) {
+    public <T> void sort(List<T> list, int lo, int hi, Comparator<T> comparator) {
         if (list.isEmpty())
             return;
-        for (int i = 0; i < list.size() - 1; i++) {
+        for (int i = lo; i < hi; i++) {
             // ищется индекс минимального элемента
             int indOfMin = i;
-            for (int j = i + 1; j < list.size(); j++) {
+            for (int j = i + 1; j <= hi; j++) {
                 if (comparator.compare(list.get(indOfMin), list.get(j)) > 0) {
                     indOfMin = j;
                 }

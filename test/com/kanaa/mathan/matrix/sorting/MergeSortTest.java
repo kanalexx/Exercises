@@ -25,4 +25,11 @@ public class MergeSortTest {
         Sorting.MERGE.sortDesc(list);
         assertEquals(Arrays.asList(5, 4, 3, 2, 1), list);
     }
+
+    @Test
+    public void sortPart() {
+        List<Integer> list = Arrays.asList(5, 1, 4, 2, 3);
+        Sorting.MERGE.sort(list, 1, 3);
+        assertEquals(Arrays.asList(5, 1, 2, 4, 3), list);
+    }
 }

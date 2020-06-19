@@ -12,8 +12,8 @@ import java.util.List;
 public class MergeSort implements Sorter {
 
     @Override
-    public <T> void sort(List<T> list, Comparator<T> comparator) {
-        doMergeSort(list, 0, list.size() - 1, comparator);
+    public <T> void sort(List<T> list, int lo, int hi, Comparator<T> comparator) {
+        doMergeSort(list, lo, hi, comparator);
     }
 
     /**
@@ -22,7 +22,7 @@ public class MergeSort implements Sorter {
      * @param p           - индекс левой границы списка
      * @param r           - индекс правой границы списка
      */
-    private <T> void doMergeSort(List<T> list, int p, int r, Comparator<T> comparator) {
+    protected <T> void doMergeSort(List<T> list, int p, int r, Comparator<T> comparator) {
         // если длина части больше одного элемента
         if (p < r) {
             // индекс середины списка
@@ -44,7 +44,7 @@ public class MergeSort implements Sorter {
      * @param q           - индекс середины списка
      * @param r           - индекс правой границы списка
      */
-    private <T> void doMerge(List<T> list, int p, int q, int r, Comparator<T> comparator) {
+    protected <T> void doMerge(List<T> list, int p, int q, int r, Comparator<T> comparator) {
         // количество элементов в левом массиве
         int lSize = q - p + 1;
         // количество элементов в правом массиве

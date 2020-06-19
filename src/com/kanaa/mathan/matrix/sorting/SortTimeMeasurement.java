@@ -22,6 +22,7 @@ public class SortTimeMeasurement {
     /** Список быстрых сортировок */
     private static final List<Sorting> FAST_SORTING_LIST = Arrays.asList(
             Sorting.MERGE
+            ,Sorting.MERGEINSERT
             ,Sorting.SYSTEM
     );
     /** Список медленных сортировок */

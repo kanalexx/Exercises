@@ -38,7 +38,7 @@ public class RandomGenerator {
     private static void generateToFile(int count) throws IOException {
         final String resources = System.getProperty("user.dir")+"\\resources\\";
         final int from = 0;
-        final int to = 100;
+        final int to = count;
         List<Integer> list = RandomGenerator.generateIntegers(count, from, to);
         String fileName = count + ".txt";
         saveToFile(list, resources + fileName);
@@ -55,7 +55,6 @@ public class RandomGenerator {
             generateToFile(100000);
             generateToFile(1000000);
             generateToFile(10000000);
-            generateToFile(100000000);
             logger.log("ГОТОВО!");
         } catch (IOException e) {
             e.printStackTrace();

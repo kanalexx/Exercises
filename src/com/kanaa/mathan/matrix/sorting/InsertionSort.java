@@ -12,13 +12,13 @@ import java.util.List;
 public class InsertionSort implements Sorter {
 
     @Override
-    public <T> void sort(List<T> list, Comparator<T> comparator) {
+    public <T> void sort(List<T> list, int lo, int hi, Comparator<T> comparator) {
         if (list.isEmpty())
             return;
-        for (int j = 1; j < list.size(); j++) {
+        for (int j = lo + 1; j <= hi; j++) {
             T key = list.get(j);
             int i = j - 1;
-            while (i >= 0 && comparator.compare(list.get(i), key) > 0) {
+            while (i >= lo && comparator.compare(list.get(i), key) > 0) {
                 list.set(i + 1, list.get(i));
                 i--;
             }

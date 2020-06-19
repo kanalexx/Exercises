@@ -13,9 +13,10 @@ public enum Sorting implements Sorter {
     INSERTION("Сортировка вставкой", new InsertionSort()),
     SELECTION("Сортировка выбором", new SelectionSort()),
     MERGE("Сортировка слиянием", new MergeSort()),
+    MERGEINSERT("Сортировка слиянием со вставкой", new MergeInsertSort()),
     SYSTEM("Сортировка Arrays.sort()", new Sorter() {
         @Override
-        public <T> void sort(List<T> list, Comparator<T> comparator) {
+        public <T> void sort(List<T> list, int lo, int hi, Comparator<T> comparator) {
             Arrays.sort(list.toArray());
         }
     });
@@ -29,8 +30,8 @@ public enum Sorting implements Sorter {
     }
 
     @Override
-    public <T> void sort(List<T> list, Comparator<T> comparator) {
-        this.sorter.sort(list, comparator);
+    public <T> void sort(List<T> list, int lo, int hi, Comparator<T> comparator) {
+        this.sorter.sort(list, lo, hi, comparator);
     }
 
     public String sortName() {
