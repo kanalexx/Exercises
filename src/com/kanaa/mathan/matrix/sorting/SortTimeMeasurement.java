@@ -1,5 +1,6 @@
 package com.kanaa.mathan.matrix.sorting;
 
+import com.kanaa.Resources;
 import com.kanaa.common.Logger;
 import com.kanaa.measurement.TimeMeter;
 
@@ -18,7 +19,6 @@ import java.util.stream.Stream;
  */
 
 public class SortTimeMeasurement {
-    private static final String resources = System.getProperty("user.dir")+"\\resources\\";
     /** Список быстрых сортировок */
     private static final List<Sorting> FAST_SORTING_LIST = Arrays.asList(
             Sorting.MERGE
@@ -30,23 +30,26 @@ public class SortTimeMeasurement {
             Sorting.INSERTION
             ,Sorting.SELECTION
     );
-    /** Список файлов для быстрых сортировок */
-    private static final List<String> FILE_NAME_LIST_FOR_FAST = Arrays.asList(
-            resources + "10.txt"
-            , resources + "100.txt"
-            , resources + "1000.txt"
-            , resources + "10000.txt"
-            , resources + "100000.txt"
-            , resources + "1000000.txt"
-            , resources + "10000000.txt"
+    /**
+     * Список файлов для быстрых сортировок
+     * <br> Файлы создаются запуском {@link com.kanaa.measurement.RandomGenerator#main(String[])}
+     */
+    private static final List<String> FILE_NAME_LIST_FOR_FAST = Resources.list(
+            "10.txt"
+            , "100.txt"
+            , "1000.txt"
+            , "10000.txt"
+            , "100000.txt"
+            , "1000000.txt"
+            , "10000000.txt"
     );
     /** Список файлов для медленных сортировок */
-    private static final List<String> FILE_NAME_LIST_FOR_SLOW = Arrays.asList(
-            resources + "10.txt"
-            , resources + "100.txt"
-            , resources + "1000.txt"
-            , resources + "10000.txt"
-            , resources + "100000.txt"
+    private static final List<String> FILE_NAME_LIST_FOR_SLOW = Resources.list(
+             "10.txt"
+            , "100.txt"
+            , "1000.txt"
+            , "10000.txt"
+            , "100000.txt"
     );
     //
     private static final Logger logger = new Logger();

@@ -1,5 +1,6 @@
 package com.kanaa.crypto.basic.cryptanalysis;
 
+import com.kanaa.Resources;
 import com.kanaa.common.Logger;
 import com.kanaa.common.Pair;
 import com.kanaa.common.StringFromFile;
@@ -15,8 +16,6 @@ import java.util.regex.Pattern;
 public class SymbolFreqFile {
 
     public static final Logger LOGGER = new Logger();
-
-    public static final String resources = System.getProperty("user.dir")+"\\resources\\";
 
     private final String freqFileName;
 
@@ -78,23 +77,23 @@ public class SymbolFreqFile {
 
     public static void main(String[] args) {
         // Создание файла частот символов в тексте на русском языке
-        SymbolFreqFile symbolFreqFile = new SymbolFreqFile(resources+"freq.txt");
+        SymbolFreqFile symbolFreqFile = new SymbolFreqFile(Resources.path("freq.txt"));
         try {
-            symbolFreqFile.createFrom(resources+"text.txt","[ А-Я]", "Cp1251");
+            symbolFreqFile.createFrom(Resources.path("text.txt"),"[ А-Я]", "Cp1251");
         } catch (IOException e) {
             e.printStackTrace();
         }
         // получение строки из файла с зашифрованным текстом
         try {
-            String cipherText = (new StringFromFile(resources+"cipher.txt", "Cp866")).value();
+            String cipherText = (new StringFromFile(Resources.path("cipher.txt"), "Cp866")).value();
             LOGGER.print(cipherText);
         } catch (IOException e) {
             e.printStackTrace();
         }
         // получение файла частот символов в зашифрованном тексте
-        SymbolFreqFile cipherFreqFile = new SymbolFreqFile(resources+"freqCipher.txt");
+        SymbolFreqFile cipherFreqFile = new SymbolFreqFile(Resources.path("freqCipher.txt"));
         try {
-            cipherFreqFile.createFrom(resources+"cipher.txt", ".", "Cp866");
+            cipherFreqFile.createFrom(Resources.path("cipher.txt"), ".", "Cp866");
         } catch (IOException e) {
             e.printStackTrace();
         }
