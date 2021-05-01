@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Парадокс дней рождений</title>
+</head>
+<body>
+<form name="main" method="post">
+    <label for="experimentCount">Количество экспериментов: </label><input id="experimentCount" type="number" value="100"> <br>
+    <label for="count">Количество учащихся: </label><input id="count" type="number" value="23"> <br>
+    <input id="button" type="button" value="Рассчитать"> <br>
+    <label for="out">Эксперименты:</label><textarea id="out"></textarea>
+</form>
+<script>
+    let form = document.forms.namedItem("main");
+    let count = form.elements.namedItem("count");
+    let out = form.out;
+    form.button.onclick = function execute() {
+        // Подготовка экспериментальных данных
+        let experimentData = [];
+        let strLog = "";
+        for (let i = 0; i < count.value; i++) {
+            strLog = strLog + i;
+        }
+        out.value = strLog;
+    }
+</script>
+</body>
+</html>
