@@ -5,7 +5,7 @@
     <file url="file://$PROJECT_DIR$/resources/freq.txt" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/resources/freqCipher.txt" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/resources/text.txt" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/src/com/company/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/company/Main.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
