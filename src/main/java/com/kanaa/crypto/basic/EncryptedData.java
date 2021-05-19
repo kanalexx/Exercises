@@ -13,7 +13,7 @@ public class EncryptedData {
     /** Исходный открытый текст */
     private final String plainText;
 
-    /** Зашифровнный текст */
+    /** Зашифрованный текст */
     private final String cipherText;
 
     /** Алгоритм шифрования */

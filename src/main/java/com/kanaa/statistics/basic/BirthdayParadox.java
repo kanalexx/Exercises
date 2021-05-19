@@ -42,7 +42,7 @@ public class BirthdayParadox {
         for (List<Integer> data : experimentData) {
             boolean result = hasDuplicates.test(data);
             resultData.add(result);
-            System.out.println((result ? "Совпадение " : "Нет совападений") + data);
+            System.out.println((result ? "Совпадение " : "Нет совпадений") + data);
         }
         // Анализ результатов
         long positiveCount = resultData.stream()

@@ -42,7 +42,7 @@ public class ArrayTest {
     @Test
     public void indexOfExpression() {
         Array<Integer> array = new Array<>(1, 3, 4, 2, 3);
-        // индек элемента, который больше 2 равен 1
+        // индекс элемента, который больше 2 равен 1
         assertEquals(1, array.indexOf(value -> value.compareTo(2) > 0));
     }
 

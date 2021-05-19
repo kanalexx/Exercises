@@ -12,7 +12,7 @@ public class AtbashTest {
     private Alphabet alphabet = new AlphabetImpl(TestConst.RUS_SMALL_SYMBOLS);
 
     /**
-     * Корректоность шифрования
+     * Корректность шифрования
      */
     @Test
     public void testEncrypt() {
@@ -21,7 +21,7 @@ public class AtbashTest {
     }
 
     /**
-     * Корректоность расшифровки
+     * Корректность расшифровки
      */
     @Test
     public void testDecrypt() {

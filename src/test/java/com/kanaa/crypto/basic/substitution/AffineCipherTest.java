@@ -20,7 +20,7 @@ public class AffineCipherTest {
     }
 
     /**
-     * Корректоность шифрования
+     * Корректность шифрования
      */
     @Test
     public void testEncrypt() {
@@ -29,7 +29,7 @@ public class AffineCipherTest {
     }
 
     /**
-     * Корректоность расшифровки
+     * Корректность расшифровки
      */
     @Test
     public void testDecrypt() {

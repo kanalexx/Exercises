@@ -51,7 +51,7 @@ public class Array<T extends Comparable<T>> {
     }
 
     /**
-     * Линейный поиск элемента, удовлетваряющий условию expression
+     * Линейный поиск элемента, удовлетворяющий условию expression
      * @return индекс элемента, и -1 если элемент не найден
      */
     public int indexOf(Predicate<T> expression) {

@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Перечиление доступных алгоритмов сортировки
+ * Перечисление доступных алгоритмов сортировки
  *
  * @author Alexander Kanunnikov
  */

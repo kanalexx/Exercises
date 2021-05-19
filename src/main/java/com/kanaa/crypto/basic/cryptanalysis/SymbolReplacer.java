@@ -41,7 +41,7 @@ public class SymbolReplacer {
                 return new Replace(first, second);
             } else {
                 throw new IllegalArgumentException(
-                        String.format("Не удалось распознать комманду (%s)", commandLine)
+                        String.format("Не удалось распознать команду (%s)", commandLine)
                 );
             }
         }
