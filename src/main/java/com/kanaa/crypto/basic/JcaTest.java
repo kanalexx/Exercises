@@ -4,16 +4,72 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.security.*;
 import java.util.Arrays;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+/**
+ * Примеры использования взяты из
+ * <a href="https://javarush.ru/groups/posts/2277-java-cryptography-architecture--pervoe-znakomstvo">Ссылка</a>
+ */
 public class JcaTest {
 
     static final String TEXT = "secret!!secret!!secret!!secret!!";
+
+    public static void main(String[] args) throws Exception {
+//        testMessageDigest();
+//        testSymmetricEncrypting();
+//        testAsymmetricEncrypting();
+        testSignature();
+    }
+
+    private static void testSignature() throws Exception {
+        System.out.println("Исходный текст:");
+        System.out.println(TEXT);
+        byte[] data = TEXT.getBytes(UTF_8);
+        // prepare keys
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(512, SecureRandom.getInstanceStrong());
+        KeyPair keyPair = keyGen.generateKeyPair();
+        // Sign with private key
+        Signature signature = Signature.getInstance("SHA256withRSA");
+        signature.initSign(keyPair.getPrivate());
+        signature.update(data);
+        byte[] sign = signature.sign();
+        System.out.println("Подпись:");
+        System.out.println(DatatypeConverter.printHexBinary(sign));
+        // Verify with public key
+        signature.initVerify(keyPair.getPublic());
+        signature.update(data);
+        boolean verify = signature.verify(sign);
+        System.out.println("Результат проверки: " + verify);
+        assert verify;
+    }
+
+    private static void testAsymmetricEncrypting() throws Exception {
+        System.out.println("Исходный текст:");
+        System.out.println(TEXT);
+        byte[] original = TEXT.getBytes(UTF_8);
+        System.out.println(DatatypeConverter.printHexBinary(original));
+        // prepare Keys
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(1024);
+        KeyPair keyPair = keyGen.generateKeyPair();
+        // RSA Encrypt with public key
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.ENCRYPT_MODE, keyPair.getPublic());
+        byte[] encrypted = cipher.doFinal(original);
+        System.out.println("Зашифрованный текст:");
+        System.out.println(DatatypeConverter.printHexBinary(encrypted));
+        // RSA Decrypt with private key
+        cipher.init(Cipher.DECRYPT_MODE, keyPair.getPrivate());
+        byte[] decrypted = cipher.doFinal(encrypted);
+        System.out.println("Расшифрованный текст");
+        System.out.println(DatatypeConverter.printHexBinary(decrypted));
+        System.out.println(new String(decrypted, UTF_8));
+        assert Arrays.equals(original, decrypted);
+    }
 
     private static void testMessageDigest() {
         MessageDigest messageDigest = null;
@@ -22,12 +78,12 @@ public class JcaTest {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalArgumentException(e);
         }
-        byte[] input = "Александр Канунников".getBytes(StandardCharsets.UTF_8);
+        byte[] input = "Александр Канунников".getBytes(UTF_8);
         byte[] digest = messageDigest.digest(input);
         System.out.println(messageDigest.getProvider().getInfo());
         System.out.println(messageDigest.getProvider().getClass().getName());
         System.out.println(DatatypeConverter.printHexBinary(input));
-        System.out.println(DatatypeConverter.printHexBinary("Aleksandr Kanunnikov".getBytes(StandardCharsets.UTF_8)));
+        System.out.println(DatatypeConverter.printHexBinary("Aleksandr Kanunnikov".getBytes(UTF_8)));
         System.out.println(DatatypeConverter.printHexBinary(digest));
 
         byte[] salt = new byte[16];
@@ -37,6 +93,14 @@ public class JcaTest {
             throw new IllegalArgumentException(e);
         }
         messageDigest.update(salt);
+    }
+
+    private static void testSymmetricEncrypting() throws Exception {
+        System.out.println("Исходный текст:");
+        System.out.println(TEXT);
+        System.out.println(DatatypeConverter.printHexBinary(TEXT.getBytes(UTF_8)));
+        testCipherAES_ECB();
+        testCipherAES_CBC();
     }
 
     private static void testCipherAES_ECB() throws Exception {
@@ -49,7 +113,7 @@ public class JcaTest {
         Cipher cipher = Cipher.getInstance(transformation);
         cipher.init(Cipher.ENCRYPT_MODE, key);
         System.out.println("Закодированный с AES/ECB/PKCS5Padding");
-        byte[] encrypted = cipher.doFinal(TEXT.getBytes(StandardCharsets.UTF_8));
+        byte[] encrypted = cipher.doFinal(TEXT.getBytes(UTF_8));
         System.out.println(DatatypeConverter.printHexBinary(encrypted));
     }
 
@@ -69,23 +133,14 @@ public class JcaTest {
         cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
         // Encrypting
         System.out.println("Закодированный с AES/CBC/PKCS5Padding");
-        byte[] original = TEXT.getBytes(StandardCharsets.UTF_8);
+        byte[] original = TEXT.getBytes(UTF_8);
         byte[] encrypted = cipher.doFinal(original);
         System.out.println(DatatypeConverter.printHexBinary(encrypted));
         // Decrypting
-        System.out.println("Расшифрованный с AES/ECB/PKCS5Padding");
+        System.out.println("Расшифрованный с AES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
         byte[] decrypted = cipher.doFinal(encrypted);
-        System.out.println(new String(decrypted, StandardCharsets.UTF_8));
+        System.out.println(new String(decrypted, UTF_8));
         assert Arrays.equals(original, decrypted);
-    }
-
-    public static void main(String[] args) throws Exception {
-//        testMessageDigest();
-        System.out.println("Исходный текст:");
-        System.out.println(TEXT);
-        System.out.println(DatatypeConverter.printHexBinary(TEXT.getBytes(StandardCharsets.UTF_8)));
-        testCipherAES_ECB();
-        testCipherAES_CBC();
     }
 }
