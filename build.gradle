@@ -11,3 +11,13 @@ dependencies {
 	testImplementation('junit:junit:4.13')
 	testImplementation('org.mockito:mockito-all:1.9.5')
 }
+
+tasks {
+	compileJava {
+		options.encoding "UTF-8"
+	}
+
+	compileTestJava {
+		options.encoding "UTF-8"
+	}
+}

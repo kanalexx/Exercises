@@ -24,7 +24,7 @@ public class BirthdayParadox {
                 duplicates.put(value, 1);
             }
         });
-        return duplicates.containsValue(2);
+        return duplicates.values().stream().anyMatch(value -> value >= 2);
     };
 
     public static void main(String[] args) {
