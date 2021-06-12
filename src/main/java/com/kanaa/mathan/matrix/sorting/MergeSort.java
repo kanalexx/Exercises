@@ -57,7 +57,7 @@ public class MergeSort implements Sorter {
         for (int i = 0; i < lSize; i++) {
             lArr[i] = list.get(p + i);
         }
-        // заполниние правого массива правой частью массива
+        // заполнение правого массива правой частью массива
         for (int j = 0; j < rSize; j++) {
             rArr[j] = list.get(q + j + 1);
         }
@@ -69,7 +69,7 @@ public class MergeSort implements Sorter {
         for (int k = p; k <= r; k++) {
             // если правый индекс достиг предела, то сразу берется левый элемент,
             // иначе сравниваются, но при условии что левый индекс тоже не достиг предела,
-            // иначе бертся правый элемент
+            // иначе берется правый элемент
             if (j == rSize || (i != lSize && comparator.compare(lArr[i], rArr[j]) <= 0)) {
                 list.set(k, lArr[i]);
                 i++;

@@ -28,7 +28,7 @@ public abstract class SimpleSubstitutionCipher implements EncryptingMethod {
     protected abstract String cipherSymbol(String plainSymbol);
 
     /**
-     * Замена зашифроанного символа на символ из открытого текста
+     * Замена зашифрованного символа на символ из открытого текста
      */
     protected abstract String plainSymbol(String cipherSymbol);
 

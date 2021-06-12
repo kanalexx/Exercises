@@ -28,7 +28,7 @@ public class AlphabetCp1251Test {
     }
 
     /**
-     * Взаимосоответсвие методов index() и symbol()
+     * Взаимное соответствие методов index() и symbol()
      */
     @Test
     public void testSymbolByIndex() {
@@ -54,13 +54,13 @@ public class AlphabetCp1251Test {
     }
 
     /**
-     * Кирилица
+     * Кириллица
      */
     @Test
     public void testRusSymbol() {
         // Код русского символа "ф" равен 244
         assertEquals(244, alphabet.index("ф"));
-        // сивол с кодом 244 равен "ф"
+        // символ с кодом 244 равен "ф"
         assertEquals("ф", alphabet.symbol(244));
     }
 }

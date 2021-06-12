@@ -62,7 +62,7 @@ public class AlphabetImplTest {
     }
 
     /**
-     * Взаимосоответсвие методов index() и symbol()
+     * Взаимное соответствие методов index() и symbol()
      */
     @Test
     public void testSymbolByIndex() {
