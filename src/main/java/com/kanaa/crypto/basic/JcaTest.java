@@ -4,6 +4,8 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.security.*;
 import java.util.Arrays;
 
@@ -21,7 +23,18 @@ public class JcaTest {
 //        testMessageDigest();
 //        testSymmetricEncrypting();
 //        testAsymmetricEncrypting();
-        testSignature();
+//        testSignature();
+        testKeyStore();
+    }
+
+    private static void testKeyStore() throws Exception {
+//        KeyStore keyStore = KeyStore.getInstance("PKCS12");
+        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+        char[] ksPassword = "123abc".toCharArray();
+//        try (InputStream keyStoreData = new FileInputStream("keystore.ks")) {
+//            keyStore.load(keyStoreData, ksPassword);
+//        }
+        keyStore.load(null, ksPassword);
     }
 
     private static void testSignature() throws Exception {
